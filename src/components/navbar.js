@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import Script from 'dangerous-html/react'
 import PropTypes from 'prop-types'
@@ -6,6 +6,15 @@ import PropTypes from 'prop-types'
 import './navbar.css'
 
 const Navbar = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
   return (
     <nav className={`navbar-navbar ${props.rootClassName} `}>
       <img
@@ -15,31 +24,32 @@ const Navbar = (props) => {
       />
       <div className="navbar-nav-content">
         <div className="navbar-nav-links">
-          <a href="#HowItWorks" className="navbar-link nav-link">
+          <a href="#HowItWorks" className="navbar-link nav-link" onClick={closeMenu}>
             How It Works
           </a>
-          <a href="#Features" className="navbar-link1 nav-link">
+          <a href="#Features" className="navbar-link01 nav-link" onClick={closeMenu}>
             <span className="">Features</span>
             <br className=""></br>
           </a>
-          <a href="#Pricing" className="navbar-link2 nav-link">
+          <a href="#Pricing" className="navbar-link02 nav-link" onClick={closeMenu}>
             Pricing
           </a>
           <a
             href="https://mailto:pointikico@gmail.com"
             target="_blank"
             rel="noreferrer noopener"
-            className="navbar-link3 nav-link"
+            className="navbar-link03 nav-link"
+            onClick={closeMenu}
           >
             Contact Us
           </a>
         </div>
-        <a href="#GetStarted" className="navbar-link4">
+        <a href="#GetStarted" className="navbar-link04">
           <div className="navbar-get-started get-started">
             <span className="navbar-text2">Get started</span>
           </div>
         </a>
-        <div id="open-mobile-menu" className="navbar-hamburger get-started">
+        <div id="open-mobile-menu" className="navbar-hamburger get-started" onClick={toggleMenu}>
           <img
             alt={props.image_alt}
             src={props.image_src}
@@ -47,12 +57,12 @@ const Navbar = (props) => {
           />
         </div>
       </div>
-      <div id="mobile-menu" className="navbar-mobile-menu">
+      <div id="mobile-menu" className={`navbar-mobile-menu ${isOpen ? 'open' : 'closed'}`}>
         <div className="navbar-branding">
           <img
             alt={props.image_alt1}
             src={props.image_src1}
-            className="navbar-image2"
+            className="navbar-image"
           />
           <div id="close-mobile-menu" className="navbar-container">
             <svg viewBox="0 0 1024 1024" className="navbar-icon">
@@ -64,14 +74,29 @@ const Navbar = (props) => {
           </div>
         </div>
         <div className="navbar-nav-links1">
-          <span className="nav-link">Features</span>
-          <span className="nav-link">Why us</span>
-          <span className="nav-link">Prices</span>
-          <span className="nav-link">Contact</span>
+          <a href="#HowItWorks" className="navbar-link05 nav-link mobile-menu-item">
+            {props.HowItWorksLink}
+          </a>
+          <a href="#Features" className="navbar-link06 nav-link mobile-menu-item">
+            {props.FeaturesLink}
+          </a>
+          <a href="#Pricing" className="navbar-link07 nav-link mobile-menu-item">
+            {props.PricingLink}
+          </a>
+          <a
+            href="https://mailto:pointikico@gmail.com"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="navbar-link08 nav-link mobile-menu-item"
+          >
+            {props.ContactUsLink}
+          </a>
         </div>
-        <div className="get-started">
-          <span className="navbar-text3">Get started</span>
-        </div>
+        <a href="#GetStarted" className="navbar-link09">
+          <div className="navbar-get-started1 get-started">
+            <span className="navbar-text3">Get started</span>
+          </div>
+        </a>
       </div>
       <div className="">
         <Script
@@ -128,18 +153,20 @@ listenForUrlChangesMobileMenu()
 
 Navbar.defaultProps = {
   image_alt: 'image',
-  image_src1: '/Branding/planical7012-ttpb.svg',
+  image_src1: '/external/logo.png',
   image_src: '/Icons/hamburger-200h.png',
   text: 'Pointiki',
   image_alt1: 'image',
-  image_src3:
-    'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/af4e078b-11f4-4d37-8bf3-5490d07791c5/076775b8-3b0d-4439-bb9f-af6b89bd85e1?org_if_sml=180590',
   image_alt2: 'image',
-  image_src2: '/external/fotor_2023-5-16_16_29_7-1500h-200h.png',
+  image_src2: '/external/logo.png',
   rootClassName: '',
   image_alt3: 'image',
-  BrandingLogo:
-    'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/08e9141c-e9e9-4d51-994d-22f260b21c68/0f4ac702-51a5-4a68-8182-06e3f427edb8?org_if_sml=14251',
+  image_src3: '/external/logo.png',
+  BrandingLogo: '/external/logo.png',
+  HowItWorksLink: 'How It Works',
+  FeaturesLink: 'Features',
+  PricingLink: 'Pricing',
+  ContactUsLink: 'Contact Us',
 }
 
 Navbar.propTypes = {
@@ -154,6 +181,10 @@ Navbar.propTypes = {
   rootClassName: PropTypes.string,
   image_alt3: PropTypes.string,
   BrandingLogo: PropTypes.string,
+  HowItWorksLink: PropTypes.string,
+  FeaturesLink: PropTypes.string,
+  PricingLink: PropTypes.string,
+  ContactUsLink: PropTypes.string,
 }
 
 export default Navbar

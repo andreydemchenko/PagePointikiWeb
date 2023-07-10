@@ -230,7 +230,8 @@
   margin-right: var(--dl-space-space-unit);
 }
 .home-pasted-image04 {
-  height: fit-content;
+  width: auto;
+  height: auto;
   max-width: 250px;
   margin-top: var(--dl-space-space-twounits);
 }
@@ -1311,6 +1312,7 @@
 .home-text44 {
   color: rgb(250, 215, 180);
   width: 100%;
+  margin-top: 20px;
   font-size: 14px;
   max-width: 260px;
   font-family: Poppins;
@@ -1677,6 +1679,7 @@
     padding-bottom: 100px;
   }
   .home-text {
+    margin-top: 20px;
     font-size: 32px;
     text-align: center;
   }
@@ -1862,9 +1865,9 @@
     margin-left: auto;
     padding-top: var(--dl-space-space-fourunits);
     margin-right: auto;
-    padding-left: var(--dl-space-space-threeunits);
+    padding-left: var(--dl-space-space-twounits);
     margin-bottom: auto;
-    padding-right: var(--dl-space-space-threeunits);
+    padding-right: var(--dl-space-space-twounits);
     padding-bottom: var(--dl-space-space-fourunits);
   }
   .home-plan1 {
@@ -1877,23 +1880,24 @@
     margin-left: auto;
     padding-top: var(--dl-space-space-fourunits);
     margin-right: auto;
-    padding-left: var(--dl-space-space-threeunits);
+    padding-left: var(--dl-space-space-twounits);
     margin-bottom: auto;
-    padding-right: var(--dl-space-space-threeunits);
+    padding-right: var(--dl-space-space-twounits);
     padding-bottom: var(--dl-space-space-fourunits);
   }
   .home-plan2 {
     left: 0px;
     right: 0px;
     width: 70%;
+    height: auto;
     align-self: center;
     margin-top: 1750px;
     margin-left: auto;
     padding-top: var(--dl-space-space-fourunits);
     margin-right: auto;
-    padding-left: var(--dl-space-space-threeunits);
+    padding-left: var(--dl-space-space-twounits);
     margin-bottom: auto;
-    padding-right: var(--dl-space-space-threeunits);
+    padding-right: var(--dl-space-space-twounits);
     padding-bottom: var(--dl-space-space-fourunits);
   }
   .home-help {
@@ -1973,9 +1977,10 @@
   }
   .home-heading {
     font-size: 50px;
+    font-size: 12vw;
     margin-left: var(--dl-space-space-unit);
     margin-right: var(--dl-space-space-unit);
-    margin-bottom: 0px;
+    margin-bottom: 40px;
   }
   .home-image {
     top: 0px;
@@ -2054,7 +2059,7 @@
     margin-top: 0px;
   }
   .home-container03 {
-    height: 1200px;
+    height: 1300px;
     margin-top: -60px;
   }
   .home-pasted-image03 {
@@ -2153,12 +2158,12 @@
   .home-plan1 {
     width: 90%;
     align-self: center;
-    margin-top: 920px;
+    margin-top: 970px;
   }
   .home-plan2 {
     width: 90%;
     align-self: center;
-    margin-top: 1830px;
+    margin-top: 1940px;
   }
   .home-container06 {
     width: 90%;
@@ -2237,3 +2242,19 @@
     margin: auto;
   }
 }
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid rgb(250, 215, 180);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin-top: 20px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+

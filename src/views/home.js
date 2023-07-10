@@ -7,8 +7,58 @@ import Navbar from '../components/navbar'
 import Includes from '../components/includes'
 import Excludes from '../components/excludes'
 import './home.css'
+import { useState } from 'react';
+import axios from 'axios';
 
 const Home = (props) => {
+  const [plan, setPlan] = useState(0);
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const emailValidation = (email) => {
+    const emailPattern = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+    return emailPattern.test(email);
+  }
+
+  const sendEmail = async () => {
+    if (email === '' || message === '') {
+      setError('Please fill in all fields');
+      return;
+    }
+
+    if (!emailValidation(email)) {
+      setError('Please provide a valid email');
+      return;
+    }
+
+    setLoading(true);
+    setError('');
+
+    try {
+      const response = await axios.post('http://localhost:5000/send', {
+        plan,
+        email,
+        message
+      });
+      console.log(email + "  " + message);
+      console.log(response.data);
+
+      setLoading(false);
+      setEmail('');
+      setMessage('');
+      setPlan(0);
+    } catch (e) {
+      console.error(e); 
+      setError('Something went wrong while sending the email');
+      setLoading(false);
+      setEmail('');
+      setMessage('');
+      setPlan(0);
+    }
+  }
+
   return (
     <div className="home-container">
       <Helmet>
@@ -34,7 +84,7 @@ const Home = (props) => {
           <div className="home-image">
             <img
               alt="pastedImage"
-              src="/external/pastedimage-eom-900w.png"
+              src="/external/fun-3d-cartoon-teenage-kids.png"
               className="home-pasted-image"
             />
           </div>
@@ -67,7 +117,7 @@ const Home = (props) => {
               Now comes the fun part! Your students earn points for class
               attendance, participating in contests, clubs, Olympiads, and more.
               Every activity is a chance to earn points, motivating students to
-              engage more actively 
+              engage more actively
             </span>
           </div>
         </div>
@@ -80,12 +130,12 @@ const Home = (props) => {
           <div className="home-container04">
             <img
               alt="pastedImage"
-              src="/external/pastedimage-rzev-300w.png"
+              src="/external/home_mobile_screen.png"
               className="home-pasted-image03"
             />
             <img
               alt="pastedImage"
-              src="/external/pastedimage-hjmc-300w.png"
+              src="/external/events_mobile_screen.png"
               className="home-pasted-image04"
             />
           </div>
@@ -225,7 +275,7 @@ const Home = (props) => {
             <div className="home-main3">
               <div className="home-caption3">
                 <span className="home-section06 section-head">
-                  a new dimension 
+                  a new dimension
                 </span>
               </div>
               <div className="home-heading07">
@@ -245,7 +295,7 @@ const Home = (props) => {
           <div className="home-image4">
             <img
               alt="pastedImage"
-              src="/external/pastedimage-gc0q-200w.png"
+              src="/external/leaderboard_mobile_screen.png"
               className="home-pasted-image10"
             />
           </div>
@@ -305,7 +355,7 @@ const Home = (props) => {
                 </div>
                 <div className="home-buy-details">
                   <a href="#GetStarted" className="home-link1">
-                    <div className="home-buy button">
+                    <div className="home-buy button" onClick={(e) => setPlan(1)}>
                       <span className="home-text17">
                         <span>Start Basic</span>
                         <br></br>
@@ -369,7 +419,7 @@ const Home = (props) => {
                 </div>
                 <div className="home-buy-details1">
                   <a href="#GetStarted" className="home-link2">
-                    <div className="home-buy1 button">
+                    <div className="home-buy1 button" onClick={(e) => setPlan(2)}>
                       <span className="home-text23">
                         <span>Start Professional</span>
                         <br></br>
@@ -434,7 +484,7 @@ const Home = (props) => {
                 </div>
                 <div className="home-buy-details2">
                   <a href="#GetStarted" className="home-link3">
-                    <div className="home-buy2 button">
+                    <div className="home-buy2 button" onClick={(e) => setPlan(3)}>
                       <span className="home-text28">
                         <span>Start Enterprise</span>
                         <br></br>
@@ -489,9 +539,9 @@ const Home = (props) => {
             <span>Need any help?</span>
             <br></br>
           </span>
-          <div className="home-contact-support">
+          <a href="#GetStarted"  className="home-contact-support">
             <p className="home-text34">Contact support -&gt;</p>
-          </div>
+          </a>
         </div>
       </section>
       <div id="GetStarted" className="home-container06">
@@ -510,6 +560,8 @@ const Home = (props) => {
               type="text"
               placeholder="Your Email"
               className="home-textinput input"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)} required
             />
           </div>
           <div className="home-container09">
@@ -520,13 +572,17 @@ const Home = (props) => {
             <textarea
               placeholder="Provide a brief description of your organization. Include any specific goals, needs, or questions you might have"
               className="home-textarea textarea"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)} required
             ></textarea>
           </div>
         </div>
-        <div className="home-buy3 button">
+        {error && <div className="home-text02">{error}</div>}
+        {loading ? <div className="loader"></div> :
+        <div className="home-buy3 button" onClick={sendEmail}>
           <span className="home-text41">Submit</span>
           <span className="home-text42">Submit</span>
-        </div>
+          </div>}
       </div>
       <footer className="home-footer">
         <div className="home-content5">
@@ -581,9 +637,7 @@ const Home = (props) => {
               <div className="home-container10">
                 <p className="home-text45">Contact support </p>
                 <a
-                  href="https://mailto::pointikico@gmail.com"
-                  target="_blank"
-                  rel="noreferrer noopener"
+                  href="#GetStarted"
                   className="home-link7"
                 >
                   pointikico@gmail.com
