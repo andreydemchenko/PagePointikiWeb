@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/PagePointikiWeb/static/css/main.76a6dcb0.css",
-    "main.js": "/PagePointikiWeb/static/js/main.3aadea46.js",
-    "index.html": "/PagePointikiWeb/index.html",
-    "main.76a6dcb0.css.map": "/PagePointikiWeb/static/css/main.76a6dcb0.css.map",
-    "main.3aadea46.js.map": "/PagePointikiWeb/static/js/main.3aadea46.js.map"
+    "main.css": "/static/css/main.76a6dcb0.css",
+    "main.js": "/static/js/main.84c8f7ce.js",
+    "index.html": "/index.html",
+    "main.76a6dcb0.css.map": "/static/css/main.76a6dcb0.css.map",
+    "main.84c8f7ce.js.map": "/static/js/main.84c8f7ce.js.map"
   },
   "entrypoints": [
     "static/css/main.76a6dcb0.css",
-    "static/js/main.3aadea46.js"
+    "static/js/main.84c8f7ce.js"
   ]
 }

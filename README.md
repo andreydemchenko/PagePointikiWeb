@@ -1,1 +1,1 @@
-# Planical-modern-template-React
+# Page template - Gamification in Education

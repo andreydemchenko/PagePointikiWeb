@@ -37,7 +37,7 @@ const Home = (props) => {
     setError('');
 
     try {
-      const response = await axios.post('http://localhost:5000/send', {
+      const response = await axios.post('https://page-service.onrender.com/send', {
         plan,
         email,
         message
@@ -55,8 +55,22 @@ const Home = (props) => {
       setLoading(false);
       setEmail('');
       setMessage('');
-      setPlan(0);
     }
+    /*Email.send({
+      SecureToken : "38075f42-04ad-4e91-8e95-759abe611fb2",
+      To : 'poitikico@gmail.com',
+      From : email,
+      Subject : "Pointiki. New form",
+      Body : message
+  }).then(
+    message => {
+      alert(message)
+      setLoading(false);
+      setEmail('');
+      setMessage('');
+    }
+  );*/
+    
   }
 
   return (
@@ -84,7 +98,7 @@ const Home = (props) => {
           <div className="home-image">
             <img
               alt="pastedImage"
-              src="/external/fun-3d-cartoon-teenage-kids.png"
+              src="/external/3d-cartoon-teenage-kids.png"
               className="home-pasted-image"
             />
           </div>
